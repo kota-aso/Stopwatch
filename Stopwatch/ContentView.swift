@@ -10,10 +10,42 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("0.0")
+                .font(.system(size: 123, weight: .black))
+            Button {
+                
+            } label: {
+                Text("start")
+                    .font(.largeTitle)
+                    .frame(width: 200)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(.green)
+                    .cornerRadius(10)
+            }
+            Button {
+                
+            } label: {
+                Text("stop")
+                    .font(.largeTitle)
+                    .frame(width: 200)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(.red)
+                    .cornerRadius(10)
+            }
+            Button {
+                
+            } label: {
+                Text("reset")
+                    .font(.largeTitle)
+                    .frame(width: 200)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(.gray)
+                    .cornerRadius(10)
+            }
+
         }
         .padding()
     }
