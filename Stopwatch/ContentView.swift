@@ -16,11 +16,7 @@ struct ContentView: View {
             Text(String(format: "%.1f", secondsElapsed))
                 .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 120, weight: .black)))
             Button {
-                if timer == nil {
-                    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                    secondsElapsed += 0.1
-                    }
-                }
+                start()
             } label: {
                 Text("start")
                     .font(.largeTitle)
@@ -31,10 +27,7 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             Button {
-                if let time = timer {
-                    time.invalidate()
-                }
-                timer = nil
+                stop()
             } label: {
                 Text("stop")
                     .font(.largeTitle)
@@ -45,11 +38,7 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             Button {
-                if let time = timer {
-                    time.invalidate()
-                }
-                timer = nil
-                secondsElapsed = 0
+                reset()
             } label: {
                 Text("reset")
                     .font(.largeTitle)
@@ -63,6 +52,29 @@ struct ContentView: View {
         }
         .padding()
     }
+    func start() {
+        if timer == nil {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            secondsElapsed += 0.1
+        }
+        }
+    }
+
+    func stop() {
+        if let time = timer {
+        time.invalidate()
+        }
+        timer = nil
+    }
+
+    func reset() {
+        if let time = timer {
+        time.invalidate()
+        }
+        timer = nil
+        secondsElapsed = 0
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
