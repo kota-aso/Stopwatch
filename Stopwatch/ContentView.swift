@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var timer: Timer? = nil
+    @State var secondsElapsed: Double = 0.0
+    
     var body: some View {
         VStack {
-            Text("0.0")
-                .font(.system(size: 123, weight: .black))
+            Text(String(format: "%.1f", secondsElapsed))
+                .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 120, weight: .black)))
             Button {
-                
+                if timer == nil {
+                    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                    secondsElapsed += 0.1
+                    }
+                }
             } label: {
                 Text("start")
                     .font(.largeTitle)
@@ -24,7 +31,10 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             Button {
-                
+                if let time = timer {
+                    time.invalidate()
+                }
+                timer = nil
             } label: {
                 Text("stop")
                     .font(.largeTitle)
@@ -35,7 +45,11 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             Button {
-                
+                if let time = timer {
+                    time.invalidate()
+                }
+                timer = nil
+                secondsElapsed = 0
             } label: {
                 Text("reset")
                     .font(.largeTitle)
